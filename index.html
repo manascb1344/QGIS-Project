@@ -11,8 +11,6 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/MarkerCluster.css">
-        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
@@ -43,7 +41,6 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/leaflet.markercluster.js"></script>
         <script src="js/leaflet-search.js"></script>
         <script src="data/TouristPlaces_1.js"></script>
         <script src="data/Output_2.js"></script>
@@ -66,7 +63,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[18.9977180711407,72.66666072810683],[19.213159769107094,73.06601585243477]]);
+        }).fitBounds([[17.874456699076806,71.8002814288711],[19.65158462007596,75.08788111375841]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -146,10 +143,6 @@
                         <td class="visible-with-data" id="Category">' + (feature.properties['Category'] !== null ? autolinker.link(feature.properties['Category'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">field_6</th>\
-                        <td class="visible-with-data" id="field_6">' + (feature.properties['field_6'] !== null ? autolinker.link(feature.properties['field_6'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">Latitude</th>\
                         <td class="visible-with-data" id="Latitude">' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -180,7 +173,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(48,18,59,1.0)',
+                fillColor: 'rgba(86,190,206,1.0)',
                 interactive: true,
             }
                     break;
@@ -197,7 +190,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(71,119,239,1.0)',
+                fillColor: 'rgba(226,18,146,1.0)',
                 interactive: true,
             }
                     break;
@@ -214,7 +207,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(27,208,213,1.0)',
+                fillColor: 'rgba(99,227,148,1.0)',
                 interactive: true,
             }
                     break;
@@ -231,7 +224,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(100,253,106,1.0)',
+                fillColor: 'rgba(175,91,224,1.0)',
                 interactive: true,
             }
                     break;
@@ -248,7 +241,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(211,232,53,1.0)',
+                fillColor: 'rgba(232,213,92,1.0)',
                 interactive: true,
             }
                     break;
@@ -265,7 +258,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(254,153,44,1.0)',
+                fillColor: 'rgba(139,222,88,1.0)',
                 interactive: true,
             }
                     break;
@@ -282,7 +275,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(217,56,7,1.0)',
+                fillColor: 'rgba(235,134,118,1.0)',
                 interactive: true,
             }
                     break;
@@ -299,7 +292,7 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(122,4,3,1.0)',
+                fillColor: 'rgba(123,136,237,1.0)',
                 interactive: true,
             }
                     break;
@@ -323,12 +316,8 @@
                 return L.shapeMarker(latlng, style_TouristPlaces_1_0(feature));
             },
         });
-        var cluster_TouristPlaces_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
-        cluster_TouristPlaces_1.addLayer(layer_TouristPlaces_1);
-
         bounds_group.addLayer(layer_TouristPlaces_1);
-        cluster_TouristPlaces_1.addTo(map);
+        map.addLayer(layer_TouristPlaces_1);
         function pop_Output_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -374,7 +363,8 @@
                         <td class="visible-with-data" id="part_distance">' + (feature.properties['part_distance'] !== null ? autolinker.link(feature.properties['part_distance'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['part_travel_time'] !== null ? autolinker.link(feature.properties['part_travel_time'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Travel time (s)</th>\
+                        <td class="visible-with-data" id="part_travel_time">' + (feature.properties['part_travel_time'] !== null ? autolinker.link(feature.properties['part_travel_time'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -671,7 +661,7 @@
         var overlaysTree = [
             {label: 'Output<br /><table><tr><td style="text-align: center;"><img src="legend/Output_3_bus0.png" /></td><td>bus</td></tr><tr><td style="text-align: center;"><img src="legend/Output_3_train1.png" /></td><td>train</td></tr><tr><td style="text-align: center;"><img src="legend/Output_3_undergroundtrain2.png" /></td><td>underground train</td></tr><tr><td style="text-align: center;"><img src="legend/Output_3_bike3.png" /></td><td>bike</td></tr><tr><td style="text-align: center;"><img src="legend/Output_3_walk4.png" /></td><td>walk</td></tr><tr><td style="text-align: center;"><img src="legend/Output_3_car5.png" /></td><td>car</td></tr></table>', layer: layer_Output_3},
             {label: 'Output<br /><table><tr><td style="text-align: center;"><img src="legend/Output_2_bus0.png" /></td><td>bus</td></tr><tr><td style="text-align: center;"><img src="legend/Output_2_train1.png" /></td><td>train</td></tr><tr><td style="text-align: center;"><img src="legend/Output_2_undergroundtrain2.png" /></td><td>underground train</td></tr><tr><td style="text-align: center;"><img src="legend/Output_2_bike3.png" /></td><td>bike</td></tr><tr><td style="text-align: center;"><img src="legend/Output_2_walk4.png" /></td><td>walk</td></tr><tr><td style="text-align: center;"><img src="legend/Output_2_car5.png" /></td><td>car</td></tr></table>', layer: layer_Output_2},
-            {label: 'Tourist Places<br /><table><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Beach0.png" /></td><td>Beach</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Cultural1.png" /></td><td>Cultural</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Fort2.png" /></td><td>Fort</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Heritage3.png" /></td><td>Heritage</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_HillStation4.png" /></td><td>Hill Station</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_NatureWildlife5.png" /></td><td>Nature/Wildlife</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Religious6.png" /></td><td>Religious</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_7.png" /></td><td></td></tr></table>', layer: cluster_TouristPlaces_1},
+            {label: 'Tourist Places<br /><table><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Beach0.png" /></td><td>Beach</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Cultural1.png" /></td><td>Cultural</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Fort2.png" /></td><td>Fort</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Heritage3.png" /></td><td>Heritage</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_HillStation4.png" /></td><td>Hill Station</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_NatureWildlife5.png" /></td><td>Nature/Wildlife</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_Religious6.png" /></td><td>Religious</td></tr><tr><td style="text-align: center;"><img src="legend/TouristPlaces_1_7.png" /></td><td></td></tr></table>', layer: layer_TouristPlaces_1},
             {label: "Basemap", layer: layer_Basemap_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
